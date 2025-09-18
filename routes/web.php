@@ -9,9 +9,11 @@ use Illuminate\Auth\Events\Login;
 Route::get('/', [beranda::class, 'index'])->name('beranda');
 
 //Login route
-Route::get('/ogin',[AuthController::class, 'login'])->name('login');
+Route::get('/login',[AuthController::class, 'login'])->name('login');
 Route::post('auth',[AuthController::class, 'auth'])->name('auth');
+Route::get('logout',[AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['admin'])->group(function() {
-    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+    Route::get('/admin/dashboard', [AdminController::class, 'admin'])->name('admin.dashboard');
 });

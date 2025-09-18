@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -13,16 +13,6 @@ class AuthController extends Controller
     //
     public function login(Request $request)
     {
-        if (Auth::check()){
-            $user = Auth::user();
-            if ($user->role ==='admin') {
-                return redirect()->route('admin.dashboard');
-            } elseif ($user->role === 'operator'){
-                return redirect()->route('operator.dashboard');
-            }
-
-        }
-
         return view('login.login');
     }
 

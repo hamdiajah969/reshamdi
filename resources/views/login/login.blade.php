@@ -1,66 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login Admin Sekolah</title>
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}" />
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #0d47a1 0%, #2575fc 100%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 40px 30px;
+            width: 350px;
+            text-align: center;
+        }
+        .login-container img {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+        }
+        .login-container h2 {
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .form-control {
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding-left: 45px;
+            height: 45px;
+            box-shadow: none;
+        }
+        .form-control::placeholder {
+            color: #e0e0e0;
+        }
+        .input-icon {
+            position: relative;
+        }
+        .input-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 18px;
+        }
+        .form-check-label {
+            color: white;
+            user-select: none;
+        }
+        .form-check-input {
+            background-color: white;
+            border-radius: 3px;
+            margin-top: 0.3rem;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+        .forgot-link {
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-login {
+            background: white;
+            color: navy;
+            border-radius: 30px;
+            font-weight: 600;
+            padding: 10px 0;
+            margin-top: 20px;
+            width: 100%;
+            border: none;
+            transition: background 0.3s ease;
+        }
+        .btn-login:hover {
+            background: #fff;
+            opacity: 0.9;
+            color: #5a0fb8;
+        }
+        .register-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: white;
+        }
+        .register-text a {
+            color: white;
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body style="margin: 0; height: 100vh; background: linear-gradient(to bottom, #198754, #FFFFFF);">
-    <div class="container mt-5">
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+<body>
+    <div class="login-container">
+        <img src="{{ asset('assets/foto/nnn.png') }}" alt="Login Image" />
+        <h2>Login</h2>
+        <form action="{{ route('auth') }}" method="post">
+            @csrf
+            <div class="mb-3 input-icon">
+                <i class="fa-solid fa-user"></i>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    required
+                />
             </div>
-        @elseif(session('error'))
-            <div class="alert alert-danger alert-dismissible">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="mb-3 input-icon">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                />
             </div>
-        @endif
+            <button type="submit" class="btn btn-login">Login</button>
+            <a href="{{ route(('beranda')) }}" class="forgot-link">Kembali Ke Beranda</a>
+        </form>
     </div>
-    <div class="container d-flex justify-content-center align-items-center mt-5">
-        <div class="card shadow-sm mt-5">
-            <div class="login-box">
-                <div class="card-header text-center bg-success">
-                    <h4 class="text-white mb-0">Login To Smk Kapal</h4>
-                </div>
-                <img src="{{ asset('assets/foto/foto2.png') }}" width="150" height="150" class="mx-auto d-block my-3">
-                <div class="card-body">
-                    <form action="{{ route('auth') }}" method="post">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username:</label>
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="fa-solid fa-user"></i>
-                                </span>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Masukan username">
-                            </div>
-                        </div>
 
-                        <div class="mb-4">
-                            <label for="password" class="form-label">Password:</label>
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="fa-solid fa-lock"></i>
-                                </span>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password">
-                            </div>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success">Login</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/fontawesome/js/fontawesome.js') }}"></script>
 </body>
 </html>
-<script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{ asset('assets/fontawesome/js/fontawesome.js') }}"></script>
