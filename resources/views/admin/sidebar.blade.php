@@ -88,10 +88,13 @@
 
         <div class="sidebar-heading">Features</div>
         <li>
+            <a class="nav-link" href="{{ route('admin.user.index') }}"><i class="bi bi-person-circle"></i> User</a>
+        </li>
+        <li>
             <a class="nav-link" href="{{ route('admin.profile') }}"><i class="bi bi-building"></i> Profile Sekolah</a>
         </li>
         <li>
-            <a class="nav-link" href="#"><i class="bi bi-journal-text"></i> Forms</a>
+            <a class="nav-link" href="{{ route('admin.siswa') }}"><i class="bi bi-person"></i> Siswa</a>
         </li>
         <li>
             <a class="nav-link" href="#"><i class="bi bi-table"></i> Tables</a>

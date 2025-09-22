@@ -23,7 +23,7 @@ class authentificationadmin
             return redirect('/');
         }
 
-        return redirect('login');
+        return redirect('auth/login');
     }
 
 

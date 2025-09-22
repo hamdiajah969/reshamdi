@@ -17,17 +17,17 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'id' => 1,
-            'name' => 'Liar',
+            'name' => 'Dodoy',
             'username' => 'admin123',
             'password' => bcrypt(1234),
             'role' => 'admin'
         ]);
-         User::create([
-            'id' => 1,
-            'name' => 'KAus',
-            'username' => 'admin2',
+        User::create([
+            'id' => 2,
+            'name' => 'Idoy',
+            'username' => 'operator123',
             'password' => bcrypt(1234),
-            'role' => 'admin'
+            'role' => 'operator'
         ]);
     }
 }

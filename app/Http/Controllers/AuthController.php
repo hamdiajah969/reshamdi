@@ -11,6 +11,13 @@ class AuthController extends Controller
     //
 
     //
+    public function admin()
+    {
+        $user = User::where('role', 'siswa')->get();
+        $officer = User::where('role', 'officer')->get();
+        return view('admin.dashboard', compact('user', 'officer'));
+    }
+
     public function login(Request $request)
     {
         return view('login.login');
@@ -28,8 +35,8 @@ class AuthController extends Controller
 
         if (Auth::user()->role == 'admin') {
             return redirect()->intended(route('admin'))->with('success', 'Selamat datang, Admin!');
-        } elseif (Auth::user()->role == 'officer') {
-            return redirect()->intended(route('officer'))->with('success', 'Selamat datang, Officer!');
+        } elseif (Auth::user()->role == 'operator') {
+            return redirect()->intended(route('operator'))->with('success', 'Selamat datang, Officer!');
         } else {
             return redirect()->back()->with('error', 'Level pengguna tidak valid.');
         }

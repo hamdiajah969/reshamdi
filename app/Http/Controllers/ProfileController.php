@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\profil_sekolah;
 use Illuminate\Http\Request;
+use Illuminnate\Support\Facades\Crypt;
 
 class ProfileController extends Controller
 {
@@ -15,6 +16,7 @@ class ProfileController extends Controller
     }
 
     public function create(){
+        $data ['profil_sekolahs'] = profil_sekolah::all();
         return view("admin.profile.tambah_profile");
     }
 
